@@ -1,0 +1,8 @@
+build/
+sdkconfig
+sdkconfig.old
+main/env_config.h
+.vscode/
+__pycache__/
+.env
+
