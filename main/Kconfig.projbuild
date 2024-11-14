@@ -1,0 +1,166 @@
+menu "Capstone Configuration"
+
+    orsource "$IDF_PATH/examples/common_components/env_caps/$IDF_TARGET/Kconfig.env_caps"
+
+# Cooler GPIO
+    config COOLER_TEMP
+        int "Cooler Temperature GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 1
+        help
+            Analog Input GPIO number (IOxx) to read cooler temperature.
+
+    config COOLER_VOLTAGE
+        int "Cooler Voltage GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 2
+        help
+            Analog Input GPIO number (IOxx) to read cooler voltage.
+
+    config COOLER_CURRENT
+        int "Cooler Current GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 3
+        help
+            Analog Input GPIO number (IOxx) to read cooler current.
+            
+    config COOLER_PWM
+        int "Cooler PWM GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 4
+        help
+            Analog Output GPIO number (IOxx) to set cooler PWM.
+
+    config COOLER_ENABLE
+        int "Cooler Enable GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 5
+        help
+            Digital Output GPIO number (IOxx) to enable cooler.
+
+# LED GPIO    
+    config POWER_LED
+        int "Power LED GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 6
+        help
+            Digital Output GPIO number (IOxx) to set power LED.
+
+    config LOCK_STATUS_LED
+        int "Lock Status LED GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 7
+        help
+            Digital Output GPIO number (IOxx) to set lock status LED.
+
+    config COOLING_STATUS_LED
+        int "Cooling Status LED GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 8
+        help
+            Digital Output GPIO number (IOxx) to set cooling status LED.
+
+    config PCB_DEBUG_LED
+        int "PBC Debug GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 48
+        help
+            Digital Output GPIO number (IOxx) to set PCB debug LED.
+
+# Status GPIO
+    config LID_HALL_SENSOR
+        int "Lid Hall Sensor GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 9
+        help
+            Digital Input GPIO number (IOxx) to read lid hall sensor.
+
+    config COOLER_PRESSURE_SENSOR
+        int "Cooler Pressure Sensor GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 12
+        help
+            Analog Input GPIO number (IOxx) to read cooler pressure sensor.
+
+# Lock GPIO
+    config LOCK_CONTROL
+        int "Lock Control GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 10
+        help
+            Digital Output GPIO number (IOxx) to lock/unlock.
+
+# Fan GPIO
+    config FAN_CONTROL
+        int "Fan Control GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 11
+        help
+            Digital Output GPIO number (IOxx) to control cooling fans.
+
+# Keypad GPIO
+    config KEYPAD_C2
+        int "Keypad Column 2 GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 21
+        help
+            Digital Input GPIO number (IOxx) to read keypad column 2.
+        
+    config KEYPAD_R1
+        int "Keypad Row 1 GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 35
+        help
+            Digital Input GPIO number (IOxx) to read keypad row 1.
+    
+    config KEYPAD_C1
+        int "Keypad Column 1 GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 36
+        help
+            Digital Input GPIO number (IOxx) to read keypad column 1.
+            
+    config KEYPAD_R4
+        int "Keypad Row 4 GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 37
+        help
+            Digital Input GPIO number (IOxx) to read keypad row 4.
+        
+    config KEYPAD_C3
+        int "Keypad Column 3 GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 38
+        help
+            Digital Input GPIO number (IOxx) to read keypad column 3.
+    
+    config KEYPAD_R3
+        int "Keypad Row 3 GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 39
+        help
+            Digital Input GPIO number (IOxx) to read keypad row 3.           
+
+    config KEYPAD_R2
+        int "Keypad Row 2 GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 40
+        help
+            Digital Input GPIO number (IOxx) to read keypad row 2.
+
+# ADC GPIO
+    config ADC_SDA
+        int "ADC Data GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 15
+        help
+            Input GPIO number (IOxx) for ADC data.
+
+    config ADC_SCL
+        int "ADC SCL GPIO"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_IN_RANGE_MAX
+        default 16
+        help
+            Input GPIO number (IOxx) for ADC clock.
+
+endmenu
