@@ -46,8 +46,10 @@ def get_latest_data():
 # Flask endpoint to send setpoint to MQTT broker
 @app.route('/send-setpoint', methods=['POST'])
 def send_setpoint():
-    time.sleep(10)
-    new_setpoint = random.uniform(5.0, 20.0)
+    new_setpoint = request.json.get("setpoint", data_storage["setpoint"])
+    new_setpoint = round(new_setpoint, 2)
+
+    # Update the setpoint in the data storage
     data_storage["setpoint"] = new_setpoint
 
     # Publish the new setpoint to the ESP32 via MQTT
