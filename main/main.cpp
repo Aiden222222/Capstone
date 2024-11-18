@@ -13,14 +13,54 @@
 #include "freertos/task.h"
 #include "inttypes.h"
 #include "env_config.h"
+#include "esp_system.h"
+#include <cstdlib>
 
+#define TEST_MODE true // Set to true to simulate data, false to use actual sensor
 static const char *TAG = "ESP32_MQTT";
 
 uint32_t MQTT_CONNECTED = 0;
 static esp_mqtt_client_handle_t client = NULL;
+static float setpoint = 10.0; // Default setpoint in Celsius
 
 static void mqtt_app_start(void);
 static void wifi_init(void);
+
+/**
+ * @brief Reads ADC value from ADC1 channel 0 and converts it to temperature.
+ * 
+ * @return float Temperature in Celsius.
+ */
+float read_temperature() {
+    if (TEST_MODE) {
+        // Simulate a temperature value for testing
+        float temperature = (rand() % 21); //gives random value between 0 and 20
+        ESP_LOGI(TAG, "Simulated Temperature: %.2f°C", temperature);
+        return temperature;
+    }
+    // const float voltage_ref = 3.3; // Reference voltage in volts
+    // const int resolution = 4096;  // ADC resolution (12-bit)
+    // const float beta = 3950.0;    // Beta coefficient of the thermistor
+    // const float r0 = 10000.0;     // Thermistor resistance at 25°C
+    // const float t0 = 298.15;      // 25°C in Kelvin
+
+    // // Read raw ADC value
+    // int adc_raw = adc1_get_raw(ADC1_CHANNEL_0);
+    // if (adc_raw < 0) {
+    //     ESP_LOGE(TAG, "ADC read failed");
+    //     return -1.0;
+    // }
+
+    // // Convert raw value to resistance
+    // float voltage = (adc_raw * voltage_ref) / resolution;
+    // float resistance = (voltage_ref - voltage) * r0 / voltage;
+
+    // // Calculate temperature using the Beta parameter equation
+    // float temperature = (beta * t0) / (t0 * log(resistance / r0) + beta) - 273.15; // Convert to Celsius
+    // return temperature;
+}
+
+
 
 /**
  * @brief Handles Wi-Fi and IP events.
@@ -68,8 +108,8 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
         case MQTT_EVENT_CONNECTED:
             ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
             MQTT_CONNECTED = 1;
-            msg_id = esp_mqtt_client_subscribe(client, "capstone/topic/test1", 0);
-            ESP_LOGI(TAG, "Subscribed to capstone/topic/test1, msg_id=%d", msg_id);
+            msg_id = esp_mqtt_client_subscribe(client, "/Medsafe/setpoint", 0);
+            ESP_LOGI(TAG, "Subscribed to /Medsafe/setpoint, msg_id=%d", msg_id);
             break;
         case MQTT_EVENT_DISCONNECTED:
             ESP_LOGI(TAG, "MQTT_EVENT_DISCONNECTED");
@@ -77,8 +117,14 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
             break;
         case MQTT_EVENT_DATA:
             ESP_LOGI(TAG, "MQTT_EVENT_DATA");
-            printf("TOPIC=%.*s\r\n", event->topic_len, event->topic);
-            printf("DATA=%.*s\r\n", event->data_len, event->data);
+            if (strncmp(event->topic, "/Medsafe/setpoint", event->topic_len) == 0) {
+                char setpoint_str[16] = {0};
+                strncpy(setpoint_str, event->data, event->data_len);
+                setpoint = atof(setpoint_str);  // Update the setpoint
+                ESP_LOGI(TAG, "Updated setpoint: %.2f°C", setpoint);
+            } else {
+                ESP_LOGI(TAG, "Received message on an unexpected topic: %.*s", event->topic_len, event->topic);
+            }
             break;
         case MQTT_EVENT_ERROR:
             ESP_LOGI(TAG, "MQTT_EVENT_ERROR");
@@ -144,22 +190,20 @@ void wifi_init(void)
 void Publisher_Task(void *params) {
     while (true) {
         if (MQTT_CONNECTED) {
-            // Send dummy data
-            const char* dummy_data = "Sensor Value: 42"; //Replace with actual sensor data in the future
-            int msg_id = esp_mqtt_client_publish(client, "/Capstone_Medical_Device/data", dummy_data, 0, 0, 0);
-            // int msg_id = esp_mqtt_client_publish(client, "/topic/test3", "Hello World", 0, 0, 0);
-            if (msg_id >= 0) {
-                ESP_LOGI(TAG, "Message published, msg_id=%d", msg_id);
+            float temperature = read_temperature();
+            if (temperature >= 0) {
+                char temp_str[32];
+                snprintf(temp_str, sizeof(temp_str), "Temperature: %.2f°C", temperature);
+                float msg_id = esp_mqtt_client_publish(client, "/Medsafe/temperature", temp_str, 0, 0, 0);
+                ESP_LOGI(TAG, "Published temperature: %.2f°C:", msg_id);
             } else {
-                ESP_LOGE(TAG, "Failed to publish message");
+                ESP_LOGE(TAG, "Failed to read temperature");
             }
-
-            // Delay to avoid overwhelming the system and reset WDT
-            vTaskDelay(15000 / portTICK_PERIOD_MS); // Delay for 15 seconds
         } else {
             ESP_LOGW(TAG, "MQTT not connected, unable to publish");
             vTaskDelay(1000 / portTICK_PERIOD_MS); // Wait before retrying
         }
+        vTaskDelay(15000 / portTICK_PERIOD_MS); // Publish every 15 seconds
     }
 }
 
