@@ -3,12 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="display-info">
-        <p>Box ID: {{ box_id }}</p>
+    <div class="schedule">
+        <table>
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Details</th>
+                    <th>Day</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Row 1 -->
+                <tr>
+                    <td>Sunday</td>
+                    <td>
+                        <label>Earliest Delivery Time:</label><br>
+                        <input type="time" name="sunday_earliest"><br>
+                        <label>Latest Delivery Time:</label><br>
+                        <input type="time" name="sunday_latest"><br>
+                        <label>Temperature:</label><br>
+                        <input type="number" name="sunday_temperature" step="0.1"> °C
+                    </td>
+                    <td>Monday</td>
+                    <td>
+                        <label>Earliest Delivery Time:</label><br>
+                        <input type="time" name="monday_earliest"><br>
+                        <label>Latest Delivery Time:</label><br>
+                        <input type="time" name="monday_latest"><br>
+                        <label>Temperature:</label><br>
+                        <input type="number" name="monday_temperature" step="0.1"> °C
+                    </td>
+                </tr>
+                <!-- Row 2 -->
+                <tr>
+                    <td>Tuesday</td>
+                    <td>
+                        <label>Earliest Delivery Time:</label><br>
+                        <input type="time" name="tuesday_earliest"><br>
+                        <label>Latest Delivery Time:</label><br>
+                        <input type="time" name="tuesday_latest"><br>
+                        <label>Temperature:</label><br>
+                        <input type="number" name="tuesday_temperature" step="0.1"> °C
+                    </td>
+                    <td>Wednesday</td>
+                    <td>
+                        <label>Earliest Delivery Time:</label><br>
+                        <input type="time" name="wednesday_earliest"><br>
+                        <label>Latest Delivery Time:</label><br>
+                        <input type="time" name="wednesday_latest"><br>
+                        <label>Temperature:</label><br>
+                        <input type="number" name="wednesday_temperature" step="0.1"> °C
+                    </td>
+                </tr>
+                <!-- Row 3 -->
+                <tr>
+                    <td>Thursday</td>
+                    <td>
+                        <label>Earliest Delivery Time:</label><br>
+                        <input type="time" name="thursday_earliest"><br>
+                        <label>Latest Delivery Time:</label><br>
+                        <input type="time" name="thursday_latest"><br>
+                        <label>Temperature:</label><br>
+                        <input type="number" name="thursday_temperature" step="0.1"> °C
+                    </td>
+                    <td>Friday</td>
+                    <td>
+                        <label>Earliest Delivery Time:</label><br>
+                        <input type="time" name="friday_earliest"><br>
+                        <label>Latest Delivery Time:</label><br>
+                        <input type="time" name="friday_latest"><br>
+                        <label>Temperature:</label><br>
+                        <input type="number" name="friday_temperature" step="0.1"> °C
+                    </td>
+                </tr>
+                <!-- Row 4 -->
+                <tr>
+                    <td>Saturday</td>
+                    <td>
+                        <label>Earliest Delivery Time:</label><br>
+                        <input type="time" name="saturday_earliest"><br>
+                        <label>Latest Delivery Time:</label><br>
+                        <input type="time" name="saturday_latest"><br>
+                        <label>Temperature:</label><br>
+                        <input type="number" name="saturday_temperature" step="0.1"> °C
+                    </td>
+                    <td colspan="2">
+                        <p>Status: 
+                            {% if package_status == 'in_box' %}
+                                Package is in Box
+                            {% else %}
+                                No Package in Box
+                            {% endif %}
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
+
+
+
+

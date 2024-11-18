@@ -145,4 +145,27 @@ button:hover {
     background-color: #0056b3;
 }
 
+.schedule label {
+    font-size: 1.3rem; /* Triple the font size */
+}
 
+.schedule input {
+    font-size: 1.3rem; /* Triple the font size for inputs */
+}
+
+.schedule td {
+    padding: 20px;
+}
+
+.schedule table {
+    font-size: 1.3rem;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule th, .schedule td {
+    font-size: 1.3rem;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid #ddd;
+}
