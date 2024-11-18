@@ -163,4 +163,6 @@ menu "Capstone Configuration"
         help
             Input GPIO number (IOxx) for ADC clock.
 
+# Other
+
 endmenu
