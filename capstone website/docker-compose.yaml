@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root        # Set the MySQL root password
+      MYSQL_DATABASE: Capstone         # Initialize the database named `capstone`
+      MYSQL_USER: admin                # Create a non-root user for the database
+      MYSQL_PASSWORD: admin            # Set the password for the non-root user
+    volumes:
+      - mysql_data:/var/lib/mysql      # Persist MySQL data
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql  # Initialize database on first run
+    networks:
+      - twotier
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  flask-app:
+    build: 
+      context: .
+    container_name: flask-app
+    ports:
+      - "5000:5000"
+    environment:
+      MYSQL_HOST: mysql               # MySQL service name as host
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DB: Capstone
+      BROKER_IP: mqtt-broker 
+    depends_on:
+      - mysql
+      - mqtt-broker
+    networks:
+      - twotier
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+  mqtt-broker:
+    image: eclipse-mosquitto
+    container_name: mqtt-broker
+    ports:
+      - "1883:1883"                   # MQTT default port
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf  # Mount the config file
+    networks:
+      - twotier
+    restart: always
+networks:
+  twotier:
+
+volumes:
+  mysql_data:
