@@ -34,7 +34,6 @@ def on_message(client, userdata, msg):
             payload = json.loads(msg.payload.decode())
             data_storage["temperature"] = payload.get("temperature", None)
             data_storage["container_filled"] = payload.get("container_filled", None)
-
             # Print the received data
             print(f"Received data - Temperature: {data_storage['temperature']}°C, "
                   f"Container Filled: {data_storage['container_filled']}")
@@ -103,7 +102,6 @@ def get_setpoint():
 def send_setpoint():
     new_setpoint = request.json.get("setpoint", data_storage["setpoint"])
     new_setpoint = round(new_setpoint, 2)
-
     # Update the setpoint in the data storage
     data_storage["setpoint"] = new_setpoint
 
@@ -177,6 +175,16 @@ def check_temperature():
             # Update the temperature for the day in the data storage
             if "daily_temperatures" not in data_storage:
                 data_storage["daily_temperatures"] = {}
+
+                # Publish temperature to the ESP32
+                client = mqtt.Client()
+                client.connect(BROKER_IP, port, 60)
+                client.publish(TOPIC_SETPOINT, str(temperature))
+                print(f"Published new setpoint: {temperature}")
+                client.disconnect()
+
+                return jsonify({"message": "Setpoint sent to MQTT broker", "new_setpoint": temperature})
+
             data_storage["daily_temperatures"][day] = temperature
             return jsonify(success=True, temperature=temperature, day=day)
         else:
@@ -195,8 +203,3 @@ if __name__ == '__main__':
     start_mqtt_client()
 
     app.run(host='0.0.0.0', port=5000)  # Start Flask app
-
-
-
-
-
