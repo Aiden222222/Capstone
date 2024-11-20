@@ -1,13 +1,13 @@
 # ninja log v5
+14851	15962	7536523944942552	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/secure_boot.c.obj	7d937e390dcbc6d6
+4145	4922	7536523834029086	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/padlock.c.obj	84a340360c9260e8
+26814	28385	7536524067723803	esp-idf/heap/CMakeFiles/__idf_heap.dir/heap_caps.c.obj	6309e36f75e43431
+2406	3496	7536523818175509	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecdh.c.obj	2b482b75efce838e
 17205	17932	7536523965062387	esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_th.c.obj	d15e93f81ff25f8b
 224	331	7536523789476201	project_elf_src_esp32s3.c	93d5690b127f7d2f
 102225	102349	7536524809737303	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/CMakeFiles/bootloader-complete	de2dbd44dced21b0
 35825	36717	7536524152688937	esp-idf/newlib/CMakeFiles/__idf_newlib.dir/reent_init.c.obj	6f6636d0b16adcef
 29728	30943	7536524094857062	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/rtc_module.c.obj	f7e5dae5b5970cef
-4145	4922	7536523834029086	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/padlock.c.obj	84a340360c9260e8
-14851	15962	7536523944942552	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/secure_boot.c.obj	7d937e390dcbc6d6
-2406	3496	7536523818175509	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecdh.c.obj	2b482b75efce838e
-26814	28385	7536524067723803	esp-idf/heap/CMakeFiles/__idf_heap.dir/heap_caps.c.obj	6309e36f75e43431
 47048	49036	7536524275141405	esp-idf/esp_driver_i2s/CMakeFiles/__idf_esp_driver_i2s.dir/i2s_pdm.c.obj	2785117710b8cd62
 118038	118718	7536524971906696	esp-idf/espcoredump/CMakeFiles/__idf_espcoredump.dir/src/core_dump_init.c.obj	f7017a3f7b890129
 31384	32896	7536524114057103	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/deprecated/gdma_legacy.c.obj	4ea5a2cb6f076df8
@@ -61,13 +61,13 @@
 699	1809	7536523803851883	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/base64.c.obj	fd7ccceaf331d49d
 2031	2832	7536523813169659	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/constant_time.c.obj	581376ab678f09e4
 74605	76811	7536524552628458	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/sae_pk.c.obj	4d41e6f3c970f729
-69460	70857	7536524494073027	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha1-prf.c.obj	23761a26cd7b1c8b
 35834	37157	7536524156383986	esp-idf/newlib/CMakeFiles/__idf_newlib.dir/newlib_init.c.obj	afc740d574c1fde2
 1794	2401	7536523809240020	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/chacha20.c.obj	b659a7c814ffa7b8
+69460	70857	7536524494073027	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha1-prf.c.obj	23761a26cd7b1c8b
 662	1869	7536523803864548	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/asn1write.c.obj	a5c235c869b70df5
 12800	14603	7536523931587439	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/1be05923a36994df818be7fb7ab3bc19/esp-idf/components/mbedtls/port/net_sockets.c.obj	1185c4dbbcf7a266
 649	1906	7536523804415052	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/asn1parse.c.obj	e68158bc779964fc
-90478	102108	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
+146	328	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
 56663	58207	7536524367438599	esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/memp.c.obj	aa8004125f3795be
 631	2042	7536523805375939	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/aria.c.obj	d27197ce18ea9b6f
 580	2203	7536523807634261	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/aes.c.obj	94e1b219c222752f
@@ -106,7 +106,7 @@
 570	3038	7536523815827939	esp-idf/mbedtls/mbedtls/3rdparty/p256-m/CMakeFiles/p256m.dir/p256-m/p256-m.c.obj	9c8881385c3d18f8
 3887	5324	7536523838086779	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/oid.c.obj	a489099726f33c49
 3527	5498	7536523838773581	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/md.c.obj	dccefeb66fe23bea
-12968	14040	7536523925403710	esp-idf/esp_app_format/CMakeFiles/__idf_esp_app_format.dir/esp_app_desc.c.obj	70ffac32c3c70141
+534	803	7536642913264482	esp-idf/esp_app_format/CMakeFiles/__idf_esp_app_format.dir/esp_app_desc.c.obj	fdd4b0eeb96c9573
 2560	3276	7536523818095528	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ecjpake.c.obj	e7c63813894a8d99
 120503	122169	7536525007273180	esp-idf/json/CMakeFiles/__idf_json.dir/cJSON/cJSON.c.obj	96bf7b339ad86a18
 22249	22968	7536524015210745	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_efuse.c.obj	110c21fc20950d0c
@@ -298,7 +298,7 @@
 11672	12985	7536523915041571	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_ticket.c.obj	d9466ac80a0d3228
 18642	20206	7536523987831063	esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/panic.c.obj	48ffa90311e6a243
 36736	38022	7536524165686358	esp-idf/pthread/CMakeFiles/__idf_pthread.dir/pthread_rwlock.c.obj	4581a90137081dd0
-90478	102108	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+146	328	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
 62269	63362	7536524419082599	esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/ipv6cp.c.obj	696bb1a7d5f90262
 11968	12995	7536523914879898	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_server.c.obj	2d6fbbbdd4b32b77
 39096	45412	7536524239486961	esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_page.cpp.obj	fe50b847e8bbd290
@@ -347,6 +347,7 @@
 14406	14932	7536523934652673	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch	70091680c7a3abdf
 13747	14983	7536523935460675	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_api.c.obj	5ab5992e78936b7d
 35343	35948	7536524145063224	esp-idf/newlib/CMakeFiles/__idf_newlib.dir/heap.c.obj	bfcb1696a8e289f
+85	16962	7536710341029455	build.ninja	9c1f2a510579b32f
 13724	15034	7536523935460675	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32s3/esp_efuse_utility.c.obj	9f0b7cf6ca485665
 27920	28604	7536524071301705	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32s3/adc_periph.c.obj	88fbea3a88216c62
 14042	15064	7536523935776777	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/efuse_controller/keys/with_key_purposes/esp_efuse_api_key.c.obj	4e5f49cd653d4fa9
@@ -510,8 +511,8 @@
 22900	23917	7536524024498880	esp-idf/hal/CMakeFiles/__idf_hal.dir/spi_flash_hal.c.obj	2c30cd4672728bea
 23099	23955	7536524024794124	esp-idf/hal/CMakeFiles/__idf_hal.dir/systimer_hal.c.obj	e25253fac8116720
 23128	24045	7536524026246473	esp-idf/hal/CMakeFiles/__idf_hal.dir/uart_hal.c.obj	552198f9784d1758
-119849	121032	7536524995547774	esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/src/ffunicode.c.obj	14d907d10942b0ee
 59112	60441	7536524389986101	esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/ip4_napt.c.obj	ea7ee352ce571521
+119849	121032	7536524995547774	esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/src/ffunicode.c.obj	14d907d10942b0ee
 23085	24057	7536524026086312	esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32s3/clk_tree_hal.c.obj	a391d186a3d363bd
 23455	24236	7536524027772640	esp-idf/hal/CMakeFiles/__idf_hal.dir/gpio_hal.c.obj	ff6b35e96961265b
 119351	120267	7536524987825749	esp-idf/wear_levelling/CMakeFiles/__idf_wear_levelling.dir/WL_Ext_Safe.cpp.obj	6db14ff8ea95d596
@@ -522,14 +523,14 @@
 62729	63981	7536524425349080	esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/pppapi.c.obj	fd5d030ac80f90a9
 24058	24936	7536524034121640	esp-idf/hal/CMakeFiles/__idf_hal.dir/twai_hal_iram.c.obj	a073e1e3b5887fb5
 24046	24971	7536524035325733	esp-idf/hal/CMakeFiles/__idf_hal.dir/twai_hal.c.obj	d1e803bec765ea1a
-150102	150321	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
+10443	10536	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
 24237	25012	7536524035485718	esp-idf/hal/CMakeFiles/__idf_hal.dir/gdma_hal_top.c.obj	b5e7ff665e9f6902
 23905	25033	7536524035485718	esp-idf/hal/CMakeFiles/__idf_hal.dir/i2c_hal_iram.c.obj	9f31d7b0f3e5ffd1
 120910	121977	7536525005101594	esp-idf/nvs_sec_provider/CMakeFiles/__idf_nvs_sec_provider.dir/nvs_sec_provider.c.obj	b032931a0d8b6a02
 23986	25307	7536524037898431	esp-idf/hal/CMakeFiles/__idf_hal.dir/mcpwm_hal.c.obj	ef51d4d410c0d17d
 40688	45255	7536524236828190	esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_types.cpp.obj	eb1f48dbdafaea0f
 24561	25462	7536524040067000	esp-idf/hal/CMakeFiles/__idf_hal.dir/sdm_hal.c.obj	e9a488032be14c02
-90478	102108	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
+146	328	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
 25261	25773	7536524043384736	esp-idf/hal/CMakeFiles/__idf_hal.dir/brownout_hal.c.obj	54db526d402b20b0
 24464	25748	7536524043224720	esp-idf/hal/CMakeFiles/__idf_hal.dir/i2s_hal.c.obj	b23fe13d40778a86
 25104	25818	7536524043792432	esp-idf/hal/CMakeFiles/__idf_hal.dir/aes_hal.c.obj	52cf41fd4e44580
@@ -647,7 +648,7 @@
 33654	34758	7536524133058026	esp-idf/freertos/CMakeFiles/__idf_freertos.dir/port_systick.c.obj	c24fd07d769b38a7
 98622	98830	7536524774376770	esp-idf/esp_driver_ledc/libesp_driver_ledc.a	d8273ea54f5315d2
 33632	34775	7536524133138014	esp-idf/freertos/CMakeFiles/__idf_freertos.dir/port_common.c.obj	148bc6eccb1b6a90
-106545	106694	7536524853159907	esp-idf/esp_app_format/libesp_app_format.a	d03dfac986fe045f
+805	894	7536642914180094	esp-idf/esp_app_format/libesp_app_format.a	d03dfac986fe045f
 119858	120981	7536524994666789	esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/port/freertos/ffsystem.c.obj	741956e20b542d74
 33791	34877	7536524134264539	esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/list.c.obj	f5c87499de635de7
 34750	35341	7536524138512465	esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/portable/xtensa/portasm.S.obj	1358cfcfdc990926
@@ -879,8 +880,8 @@
 78051	79389	7536524579276056	esp-idf/esp_coex/CMakeFiles/__idf_esp_coex.dir/esp32s3/esp_coex_adapter.c.obj	1a0a45766746c18d
 83454	85654	7536524642366941	esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_parse.c.obj	cffe110833277ea0
 78327	79615	7536524581382270	esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/mesh_event.c.obj	23ae675ec621f66b
-90478	102108	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-127245	127419	7536525060457100	esp-idf/main/libmain.a	63640563808a4c96
+146	328	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
+513	595	7536707644959645	esp-idf/main/libmain.a	63640563808a4c96
 78756	79945	7536524584535473	esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/wifi_default_ap.c.obj	ae84f3c2ec2d720f
 79392	80171	7536524586715184	esp-idf/esp-tls/CMakeFiles/__idf_esp-tls.dir/esp_tls_platform_port.c.obj	d7726b8f093befbf
 78976	80747	7536524592893616	esp-idf/http_parser/CMakeFiles/__idf_http_parser.dir/http_parser.c.obj	9320b1707c331b95
@@ -931,10 +932,10 @@
 101399	101598	7536524802201869	esp-idf/esp_driver_uart/libesp_driver_uart.a	cae13b9b76d9c99c
 101745	101907	7536524805333276	esp-idf/esp_driver_gptimer/libesp_driver_gptimer.a	505f33bfd943b94b
 101907	102076	7536524806936834	esp-idf/esp_timer/libesp_timer.a	e21ccebc63e13ec5
-90478	102108	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-90478	102108	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-90478	102108	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-90478	102108	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
+146	328	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
+146	328	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+146	328	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
+146	328	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
 102124	102225	7536524808536457	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-install	657ff551e0c310cc
 102225	102349	7536524809737303	bootloader-prefix/src/bootloader-stamp/bootloader-done	de2dbd44dced21b0
 102408	102614	7536524812379077	esp-idf/newlib/libnewlib.a	2edd6f1fa6974503
@@ -1026,224 +1027,98 @@
 125603	126638	7536525052574141	esp-idf/espressif__led_strip/CMakeFiles/__idf_espressif__led_strip.dir/src/led_strip_rmt_dev.c.obj	9e80c1edf70ed88d
 125568	126706	7536525053139338	esp-idf/wifi_provisioning/CMakeFiles/__idf_wifi_provisioning.dir/src/scheme_softap.c.obj	f7b44aa28a14c3f0
 124688	126972	7536525055793290	esp-idf/wifi_provisioning/CMakeFiles/__idf_wifi_provisioning.dir/src/manager.c.obj	ed9522f8e0efae
-126124	127126	7536525057503612	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
+154	507	7536707644064506	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
 127044	127239	7536525058602279	esp-idf/espressif__led_strip/libespressif__led_strip.a	ce625c65e68f37b6
 126973	127244	7536525058682511	esp-idf/wifi_provisioning/libwifi_provisioning.a	28d4aa9e476e2285
-127420	146795	7536525253477374	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-127420	146795	7536525253477374	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-146961	149438	7536525280075986	EECE_Capstone_M3_Final.elf	361f97d80b603313
-149438	150102	7536525287286372	.bin_timestamp	df98c54fc27844d5
-149438	150102	7536525287286372	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
-150102	150321	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-233	483	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-233	483	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
-233	483	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-233	483	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-233	483	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-233	483	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-233	483	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
-233	483	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
-244	711	7536533620209555	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
-715	869	7536533621811703	esp-idf/main/libmain.a	63640563808a4c96
-870	18169	7536533794168257	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-870	18169	7536533794168257	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-18169	20966	7536533822437991	EECE_Capstone_M3_Final.elf	361f97d80b603313
-20967	21379	7536533826900778	.bin_timestamp	df98c54fc27844d5
-20967	21379	7536533826900778	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
-21379	21514	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-21379	21514	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-235	518	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-235	518	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
-235	518	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-235	518	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-235	518	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-235	518	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-235	518	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
-235	518	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
-248	745	7536537220959525	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
-750	933	7536537222806814	esp-idf/main/libmain.a	63640563808a4c96
-933	16971	7536537382849389	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-933	16971	7536537382849389	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-16972	19046	7536537403530211	EECE_Capstone_M3_Final.elf	361f97d80b603313
-19047	19568	7536537409141056	.bin_timestamp	df98c54fc27844d5
-19047	19568	7536537409141056	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
-19569	19703	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-19569	19703	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-238	489	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-238	489	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
-238	489	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-238	489	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-238	489	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-238	489	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-238	489	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
-238	489	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
-249	755	7536538192151145	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
-760	905	7536538193592945	esp-idf/main/libmain.a	63640563808a4c96
-906	18559	7536538368889514	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-906	18559	7536538368889514	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-18560	20826	7536538392300587	EECE_Capstone_M3_Final.elf	361f97d80b603313
-20827	21458	7536538399205856	.bin_timestamp	df98c54fc27844d5
-20827	21458	7536538399205856	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
-21459	21607	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-21459	21607	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-346	733	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-346	733	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
-346	733	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-346	733	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-346	733	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-346	733	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-346	733	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
-346	733	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
-217	458	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-217	458	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
-217	458	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-217	458	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-217	458	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-217	458	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-217	458	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
-217	458	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
-227	752	7536543244512951	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
-759	988	7536543246839737	esp-idf/main/libmain.a	63640563808a4c96
-989	17994	7536543416475305	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-989	17994	7536543416475305	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-17995	20241	7536543439151201	EECE_Capstone_M3_Final.elf	361f97d80b603313
-20250	20724	7536543444283259	.bin_timestamp	df98c54fc27844d5
-20250	20724	7536543444283259	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
-20724	20903	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-20724	20903	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-442	780	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-442	780	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
-442	780	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-442	780	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-442	780	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-442	780	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-442	780	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
-442	780	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
-474	1042	7536545555732305	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
-1047	1195	7536545557254659	esp-idf/main/libmain.a	63640563808a4c96
-1196	19543	7536545740221450	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-1196	19543	7536545740221450	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-19545	22428	7536545769093291	EECE_Capstone_M3_Final.elf	361f97d80b603313
-22430	23199	7536545777275839	.bin_timestamp	df98c54fc27844d5
-22430	23199	7536545777275839	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
-23200	23441	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-23200	23441	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-261	549	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-261	549	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
-261	549	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-261	549	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-261	549	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-261	549	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-261	549	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
-261	549	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
-273	1007	7536547875094195	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
-1019	1220	7536547877344224	esp-idf/main/libmain.a	63640563808a4c96
-1220	18617	7536548050957794	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-1220	18617	7536548050957794	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-18618	21088	7536548075748056	EECE_Capstone_M3_Final.elf	361f97d80b603313
-21089	21512	7536548080318894	.bin_timestamp	df98c54fc27844d5
-21089	21512	7536548080318894	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
-21512	21658	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-21512	21658	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-232	480	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-232	480	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
-232	480	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-232	480	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-232	480	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-232	480	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-232	480	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
-232	480	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
-242	710	7536549793315721	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
-717	842	7536549794677181	esp-idf/main/libmain.a	63640563808a4c96
-843	17636	7536549962032864	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-843	17636	7536549962032864	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-17637	19714	7536549982899354	EECE_Capstone_M3_Final.elf	361f97d80b603313
-19716	20276	7536549988993574	.bin_timestamp	df98c54fc27844d5
-19716	20276	7536549988993574	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
-20277	20408	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-20277	20408	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-221	452	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-221	452	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
-221	452	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-221	452	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-221	452	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-221	452	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-221	452	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
-221	452	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
-231	678	7536551629160333	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
-686	807	7536551630441705	esp-idf/main/libmain.a	63640563808a4c96
-808	15843	7536551780311399	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-808	15843	7536551780311399	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-15843	18106	7536551803089195	EECE_Capstone_M3_Final.elf	361f97d80b603313
-18107	18539	7536551807743038	.bin_timestamp	df98c54fc27844d5
-18107	18539	7536551807743038	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
-18539	18684	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-18539	18684	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-243	491	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-243	491	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
-243	491	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-243	491	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-243	491	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-243	491	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-243	491	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
-243	491	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
-253	756	7536560396832257	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
-766	917	7536560398459615	esp-idf/main/libmain.a	63640563808a4c96
-917	17919	7536560567821067	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-917	17919	7536560567821067	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-17921	20444	7536560593354999	EECE_Capstone_M3_Final.elf	361f97d80b603313
-20445	21057	7536560599773248	.bin_timestamp	df98c54fc27844d5
-20445	21057	7536560599773248	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
-21058	21270	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-21058	21270	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-755	1102	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-755	1102	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
-755	1102	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-755	1102	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-755	1102	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-755	1102	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-755	1102	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
-755	1102	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
-765	2181	7536562107214651	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
-2190	2719	7536562112585323	esp-idf/main/libmain.a	63640563808a4c96
-2719	18796	7536562272833562	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-2719	18796	7536562272833562	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-18796	22324	7536562308195730	EECE_Capstone_M3_Final.elf	361f97d80b603313
-22325	22773	7536562313223705	.bin_timestamp	df98c54fc27844d5
-22325	22773	7536562313223705	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
-22773	22929	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-22773	22929	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-273	587	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-273	587	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
-273	587	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-273	587	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-273	587	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-273	587	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-273	587	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
-273	587	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
-288	828	7536562655016194	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
-836	967	7536562656354573	esp-idf/main/libmain.a	63640563808a4c96
-967	15471	7536562800401735	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-967	15471	7536562800401735	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-15474	18307	7536562829368686	EECE_Capstone_M3_Final.elf	361f97d80b603313
-18308	19009	7536562836747926	.bin_timestamp	df98c54fc27844d5
-18308	19009	7536562836747926	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
-19011	19393	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-19011	19393	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-264	505	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-264	505	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
-264	505	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
-264	505	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
-264	505	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
-264	505	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
-264	505	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
-264	505	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
-274	906	7536567217879300	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
-923	1181	7536567220606233	esp-idf/main/libmain.a	63640563808a4c96
-1181	18306	7536567391180296	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-1181	18306	7536567391180296	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
-18307	20745	7536567415987468	EECE_Capstone_M3_Final.elf	361f97d80b603313
-20746	21248	7536567421342587	.bin_timestamp	df98c54fc27844d5
-20746	21248	7536567421342587	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
-21248	21444	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
-21248	21444	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
+595	9469	7536707733444213	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
+595	9469	7536707733444213	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
+8918	10149	7536644220629722	EECE_Capstone_M3_Final.elf	361f97d80b603313
+10149	10443	7536644223803746	.bin_timestamp	df98c54fc27844d5
+10149	10443	7536644223803746	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
+10443	10536	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
+88	13560	7536710341029455	build.ninja	9c1f2a510579b32f
+506	684	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+506	684	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
+506	684	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
+506	684	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
+506	684	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+506	684	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
+506	684	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
+506	684	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
+513	890	7536710350752549	esp-idf/main/CMakeFiles/__idf_main.dir/keypad.c.obj	3f2431557c357522
+891	984	7536710351704552	esp-idf/main/libmain.a	3e79cf7bd992c940
+984	9422	7536710435846812	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
+984	9422	7536710435846812	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
+9422	10576	7536710447385289	EECE_Capstone_M3_Final.elf	361f97d80b603313
+10576	10845	7536710450311141	.bin_timestamp	df98c54fc27844d5
+10576	10845	7536710450311141	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
+10845	10931	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
+10845	10931	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
+158	341	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+158	341	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
+158	341	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
+158	341	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
+158	341	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+158	341	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
+158	341	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
+158	341	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
+171	525	7536712256121990	esp-idf/main/CMakeFiles/__idf_main.dir/keypad.c.obj	3f2431557c357522
+165	550	7536712256372321	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
+555	648	7536712257367744	esp-idf/main/libmain.a	3e79cf7bd992c940
+649	8716	7536712337781797	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
+649	8716	7536712337781797	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
+8716	9891	7536712349589997	EECE_Capstone_M3_Final.elf	361f97d80b603313
+9892	10174	7536712352633326	.bin_timestamp	df98c54fc27844d5
+9892	10174	7536712352633326	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
+10175	10261	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
+10175	10261	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
+173	340	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+173	340	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
+173	340	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
+173	340	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
+173	340	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+173	340	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
+173	340	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
+173	340	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
+181	520	7536714151537649	esp-idf/main/CMakeFiles/__idf_main.dir/keypad.c.obj	3f2431557c357522
+521	612	7536714152459747	esp-idf/main/libmain.a	3e79cf7bd992c940
+612	8712	7536714233218673	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
+612	8712	7536714233218673	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
+8713	9882	7536714244926356	EECE_Capstone_M3_Final.elf	361f97d80b603313
+9883	10169	7536714248039863	.bin_timestamp	df98c54fc27844d5
+9883	10169	7536714248039863	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
+10170	10256	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
+10170	10256	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
+156	327	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+156	327	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
+156	327	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
+156	327	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
+156	327	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+156	327	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
+156	327	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
+156	327	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
+157	330	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+157	330	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
+157	330	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
+157	330	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
+157	330	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+157	330	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
+157	330	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
+157	330	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
+152	333	7536524690754477	bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+152	333	7536524690754477	bootloader/bootloader.elf	64ecc77ca10b4664
+152	333	7536524690754477	bootloader/bootloader.bin	64ecc77ca10b4664
+152	333	7536524690754477	bootloader/bootloader.map	64ecc77ca10b4664
+152	333	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	64ecc77ca10b4664
+152	333	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.elf	64ecc77ca10b4664
+152	333	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.bin	64ecc77ca10b4664
+152	333	7536524690754477	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader/bootloader.map	64ecc77ca10b4664
+160	560	7536717221578085	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	6e386bbf3e2f806e
+565	667	7536717222649600	esp-idf/main/libmain.a	3e79cf7bd992c940
+667	9889	7536717314560231	esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
+667	9889	7536717314560231	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esp_system/ld/sections.ld	ddaf498c2902b016
+9889	11240	7536717328065968	EECE_Capstone_M3_Final.elf	361f97d80b603313
+11241	11545	7536717331437562	.bin_timestamp	df98c54fc27844d5
+11241	11545	7536717331437562	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/.bin_timestamp	df98c54fc27844d5
+11546	11645	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c
+11546	11645	0	C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f3d0e0eb7f07a9c

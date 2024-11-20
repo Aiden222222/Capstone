@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "EECE_Capstone_M3_Final",
-    "project_version":    "e38a654-dirty",
+    "project_version":    "d2dddc6-dirty",
     "project_path":       "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final",
     "idf_path":           "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/v5.3.1/esp-idf",
     "build_dir":          "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build",
@@ -1195,7 +1195,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [ "espressif__led_strip" ],
             "file": "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/main/main.c" ],
+            "sources": [ "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/main/main.c", "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/main/keypad.c" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {

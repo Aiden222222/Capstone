@@ -1,29 +1,34 @@
 #include <stdio.h>
+#include <stdint.h>
+#include <stddef.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+#include "sdkconfig.h"
+#include "keypad.h"
+#include "hardware_config.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/queue.h"
 #include "driver/gpio.h"
 #include "driver/adc.h"
 #include "driver/ledc.h"
 #include "esp_adc_cal.h"
 #include "esp_log.h"
-#include "sdkconfig.h"
+#include "esp_wifi.h"
+#include "esp_system.h"
+#include "nvs_flash.h"
+#include "esp_event.h"
+#include "esp_netif.h"
+#include "mqtt_client.h"
+#include "inttypes.h"
+#include "env_config.h"
 
-static const char *TAG = "\n";
+#define SENSOR_TASK_INTERVAL_MS 5000
+
+
+static const char *TAG = "MedSafe\n";
 static esp_adc_cal_characteristics_t adc1_chars;
-static ledc_channel_config_t cooler_pwm_channel;
-
-// Cooler PWM
-#define COOLER_TIMER              LEDC_TIMER_0
-#define COOLER_MODE               LEDC_LOW_SPEED_MODE
-#define COOLER_OUTPUT_IO          (4) // Define the output GPIO
-#define COOLER_CHANNEL            LEDC_CHANNEL_0
-#define COOLER_DUTY_RES           LEDC_TIMER_4_BIT // Set duty resolution to 13 bits
-#define COOLER_DUTY               (10) // Set duty to 70%. (2 ** 4) * 70% = 8
-#define COOLER_FREQUENCY          (200000) // Frequency in Hertz. Set frequency at 4 kHz
-
-/* Use project configuration menu (idf.py menuconfig) to choose the GPIO to blink,
-   or you can edit the following line and set a number here.
-*/
 
 static double analog_read(adc1_channel_t adc_channel){
     double volts = esp_adc_cal_raw_to_voltage(adc1_get_raw(adc_channel), &adc1_chars) / 1000.0;
@@ -31,45 +36,6 @@ static double analog_read(adc1_channel_t adc_channel){
 }
 
 //Cooler
-#define Cooler_Temp_ADC     (adc1_channel_t)ADC1_CHANNEL_0              //Analog In - ADC1->Channel 0 - GPIO1 
-double raw_cooler_Temp;
-double cooler_Temp;
-int resistance;
-static void read_cooler_temp(void){
-    raw_cooler_Temp = analog_read(Cooler_Temp_ADC);
-    resistance = (10000 * raw_cooler_Temp + 16500) / (4.950 - raw_cooler_Temp);
-    cooler_Temp = (0.0000001*resistance*resistance) - (0.005*resistance) + 67.3;
-}
-
-#define Cooler_Voltage_ADC  (adc1_channel_t)ADC1_CHANNEL_1              //Analog In - ADC1->Channel 1 - GPIO2
-double cooler_Voltage;
-static void read_cooler_voltage(void){
-    double raw_cooler_Voltage = analog_read(Cooler_Voltage_ADC);
-    cooler_Voltage = raw_cooler_Voltage / .272;    // 272 mV/V
-}
-
-#define Cooler_Current_ADC  (adc1_channel_t)ADC1_CHANNEL_2              //Analog In - ADC1->Channel 2 - GPIO3
-double cooler_Current;
-static void read_cooler_current(void){
-    double raw_cooler_Current = analog_read(Cooler_Current_ADC);
-    cooler_Current = 0.866 * (raw_cooler_Current / .250) + 0.0134;    // 250 mV/A
-}
-
-#define Cooler_PWM          (gpio_num_t)CONFIG_COOLER_PWM               //Analog Out - 
-int duty_cycle = 50;
-
-#define Cooler_ENABLE       (gpio_num_t)CONFIG_COOLER_ENABLE            //Digital Out
-#define Fan_Control         (gpio_num_t)CONFIG_FAN_CONTROL              //Digital Out
-bool cooler_enabled = false;
-static void enable_cooler(void){
-    gpio_set_level(Cooler_ENABLE, 1);
-    gpio_set_level(Fan_Control, 1);
-}
-static void disable_cooler(void){
-    gpio_set_level(Cooler_ENABLE, 0);
-    gpio_set_level(Fan_Control, 0);
-}
-
 static void configure_cooler(void){
     gpio_reset_pin(Cooler_PWM);
     gpio_reset_pin(Cooler_ENABLE);    
@@ -81,21 +47,21 @@ static void configure_cooler(void){
 
     // Prepare and then apply the COOLER PWM timer configuration
     ledc_timer_config_t ledc_timer = {
-        .speed_mode       = COOLER_MODE,
-        .duty_resolution  = COOLER_DUTY_RES,
-        .timer_num        = COOLER_TIMER,
-        .freq_hz          = COOLER_FREQUENCY,  // Set output frequency at 4 kHz
+        .speed_mode       = LEDC_LOW_SPEED_MODE,
+        .duty_resolution  = LEDC_TIMER_4_BIT,
+        .timer_num        = LEDC_TIMER_0,
+        .freq_hz          = frequency,
         .clk_cfg          = LEDC_AUTO_CLK
     };
     ESP_ERROR_CHECK(ledc_timer_config(&ledc_timer));
 
     // Prepare and then apply the COOLER PWM channel configuration
     ledc_channel_config_t ledc_channel = {
-        .speed_mode     = COOLER_MODE,
-        .channel        = COOLER_CHANNEL,
-        .timer_sel      = COOLER_TIMER,
+        .speed_mode     = LEDC_LOW_SPEED_MODE,
+        .channel        = LEDC_CHANNEL_0,
+        .timer_sel      = LEDC_TIMER_0,
         .intr_type      = LEDC_INTR_DISABLE,
-        .gpio_num       = COOLER_OUTPUT_IO,
+        .gpio_num       = Cooler_PWM,
         .duty           = 0, // Set duty to 0%
         .hpoint         = 0
     };
@@ -103,12 +69,36 @@ static void configure_cooler(void){
     disable_cooler();
 }
 
-//LEDs
-#define Power_LED           (gpio_num_t)CONFIG_POWER_LED                //Digital Out
-#define Locked_Status_LED   (gpio_num_t)CONFIG_LOCK_STATUS_LED          //Digital Out
-#define Cooling_Status_LED  (gpio_num_t)CONFIG_COOLING_STATUS_LED       //Digital Out
-#define PCB_Debug_LED       (gpio_num_t)CONFIG_PCB_DEBUG_LED            //Digital Out
+double cooler_Temp;
+static void read_cooler_temp(void){
+    double raw_cooler_Temp = analog_read(Cooler_Temp_ADC);
+    int resistance = (10000 * raw_cooler_Temp + 16500) / (4.950 - raw_cooler_Temp);
+    cooler_Temp = (0.0000001*resistance*resistance) - (0.005*resistance) + 67.3;
+}
+double cooler_Voltage;
+static void read_cooler_voltage(void){
+    double raw_cooler_Voltage = analog_read(Cooler_Voltage_ADC);
+    cooler_Voltage = raw_cooler_Voltage / .272;    // 272 mV/V
+}
+double cooler_Current;
+static void read_cooler_current(void){
+    double raw_cooler_Current = analog_read(Cooler_Current_ADC);
+    cooler_Current = 0.866 * (raw_cooler_Current / .250) + 0.0134;    // 250 mV/A
+}
+bool cooler_enabled = false;
+static void enable_cooler(void){
+    gpio_set_level(Cooler_ENABLE, 1);
+    gpio_set_level(Fan_Control, 1);
+    cooler_enabled = true;
+}
+static void disable_cooler(void){
+    gpio_set_level(Cooler_ENABLE, 0);
+    gpio_set_level(Fan_Control, 0);
+    cooler_enabled = false;
 
+}
+
+//LED
 static void configure_leds(void){
     gpio_reset_pin(Power_LED);
     gpio_reset_pin(Locked_Status_LED);
@@ -133,17 +123,6 @@ static void disable_LED(gpio_num_t led_gpio){
 }
 
 //Status Sensors
-#define Lid_Status          (gpio_num_t)CONFIG_LID_HALL_SENSOR          //Digital In
-bool lid_closed = false;
-static void check_lid_closed(void){
-    lid_closed = !(gpio_get_level(Lid_Status));
-}
-#define Filled_Status       (gpio_num_t)CONFIG_COOLER_PRESSURE_SENSOR   //Digital In
-bool container_filled = false;
-static void check_container_filled(void){
-    container_filled = !(gpio_get_level(Filled_Status));
-}
-
 static void configure_sensors(void){
     gpio_reset_pin(Lid_Status);
     gpio_reset_pin(Filled_Status);
@@ -152,55 +131,48 @@ static void configure_sensors(void){
     gpio_set_direction(Filled_Status, GPIO_MODE_INPUT);
 }
 
-//Lock
-#define Lock_Control        (gpio_num_t)CONFIG_LOCK_CONTROL             //Digital Out
-bool container_locked = false;
-static void lock_container(void){
-    gpio_set_level(Lock_Control, 1);
-    container_locked = true;
+bool lid_closed = false;
+static void check_lid_closed(void){
+    lid_closed = !(gpio_get_level(Lid_Status));
 }
-static void unlock_container(void){
-    gpio_set_level(Lock_Control, 0);
-    container_locked = false;
+bool container_filled = false;
+static void check_container_filled(void){
+    container_filled = !(gpio_get_level(Filled_Status));
 }
 
+//Lock
 static void configure_lock(void){
     gpio_reset_pin(Lock_Control);
-
     gpio_set_direction(Lock_Control, GPIO_MODE_OUTPUT);
 }
 
+bool container_locked = false;
+static void lock_container(void){
+    gpio_set_level(Lock_Control, 0);
+    container_locked = true;
+}
+static void unlock_container(void){
+    gpio_set_level(Lock_Control, 1);
+    container_locked = false;
+}
+
 //Keypad
-#define Keypad_C2           (gpio_num_t)CONFIG_KEYPAD_C2                //Digital In
-#define Keypad_R1           (gpio_num_t)CONFIG_KEYPAD_R1                //Digital In
-#define Keypad_C1           (gpio_num_t)CONFIG_KEYPAD_C1                //Digital In
-#define Keypad_R4           (gpio_num_t)CONFIG_KEYPAD_R4                //Digital In
-#define Keypad_C3           (gpio_num_t)CONFIG_KEYPAD_C3                //Digital In
-#define Keypad_R3           (gpio_num_t)CONFIG_KEYPAD_R3                //Digital In
-#define Keypad_R2           (gpio_num_t)CONFIG_KEYPAD_R2                //Digital In
+/** \brief Pressed keys queue*/
+QueueHandle_t keypad_queue;
 
 static void configure_keypad(void){
-    gpio_reset_pin(Keypad_C2);
-    gpio_reset_pin(Keypad_R1);
-    gpio_reset_pin(Keypad_C1);
-    gpio_reset_pin(Keypad_R4);
-    gpio_reset_pin(Keypad_C3);
-    gpio_reset_pin(Keypad_R3);
-    gpio_reset_pin(Keypad_R2);
+    gpio_reset_pin(Key_C2);
+    gpio_reset_pin(Key_R1);
+    gpio_reset_pin(Key_C1);
+    gpio_reset_pin(Key_R4);
+    gpio_reset_pin(Key_C3);
+    gpio_reset_pin(Key_R3);
+    gpio_reset_pin(Key_R2);
 
-    gpio_set_direction(Keypad_C2, GPIO_MODE_OUTPUT);
-    gpio_set_direction(Keypad_R1, GPIO_MODE_OUTPUT);
-    gpio_set_direction(Keypad_C1, GPIO_MODE_OUTPUT);
-    gpio_set_direction(Keypad_R4, GPIO_MODE_OUTPUT);
-    gpio_set_direction(Keypad_C3, GPIO_MODE_OUTPUT);
-    gpio_set_direction(Keypad_R3, GPIO_MODE_OUTPUT);
-    gpio_set_direction(Keypad_R2, GPIO_MODE_OUTPUT);
+    setup_rows();
+    setup_cols();
 }
-//ADC
-#define ADC_SDA             (gpio_num_t)CONFIG_ADC_SDA
-#define ADC_SCL             (gpio_num_t)CONFIG_ADC_SCL
 
-static uint8_t cooler_on = 0;
 
 //Peripheral Configurations
 static void configure_peripherals(void){
@@ -218,15 +190,35 @@ static void configure_peripherals(void){
     ESP_LOGI(TAG, "Peripherals configured to capstone configuration.");
 }
 
-static void read_display_status(void){
-    read_cooler_temp();
-    read_cooler_voltage();
-    read_cooler_current();
-    check_container_filled();
-    check_lid_closed();
-    ESP_LOGI(TAG, "Raw Temp: %f\nResistance: %d\nTemp: %f C\n", raw_cooler_Temp, resistance, cooler_Temp);
-    ESP_LOGI(TAG, "Current: %f A\nVoltage: %f\n", cooler_Current, cooler_Voltage);
-    ESP_LOGI(TAG, "Container: %s\n Lid: %s\n", (container_filled == true) ? "Filled" : "Empty", (lid_closed == true) ? "Closed" : "Open");
+
+// TASKS
+/**
+ * Task to handle key presses
+ */
+void keypad_task(void* arg) {
+    char key;
+    while (1) {
+        // Wait for a key press from the queue
+        if (xQueueReceive(keypad_queue, &key, portMAX_DELAY)) {
+            printf("Key Pressed: %c\n", key);
+        }
+    }
+}
+
+static void read_display_status_task(void){
+    while (1) {
+        read_cooler_temp();
+        read_cooler_voltage();
+        read_cooler_current();
+        check_container_filled();
+        check_lid_closed();
+        
+        // Log the measurement
+        ESP_LOGI(TAG, "Temp: %f C\nCurrent: %f A\nVoltage: %f\nContainer: %s\n Lid: %s\n", cooler_Temp, cooler_Current, cooler_Voltage, (container_filled == true) ? "Filled" : "Empty", (lid_closed == true) ? "Closed" : "Open");
+
+        // Delay for the defined interval
+        vTaskDelay(pdMS_TO_TICKS(SENSOR_TASK_INTERVAL_MS));
+    }
 }
 
 void app_main(void)
@@ -234,19 +226,203 @@ void app_main(void)
     /* Configure all peripherals */
     configure_peripherals();
     // Set duty to 50%
-    ESP_ERROR_CHECK(ledc_set_duty(COOLER_MODE, COOLER_CHANNEL, COOLER_DUTY));
+    ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, (floor((pow(2,4))*(duty_cycle / 100.0))));
     // Update duty to apply the new value
-    ESP_ERROR_CHECK(ledc_update_duty(COOLER_MODE, COOLER_CHANNEL));
+    ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
 
-    cooler_on = true;
+    gpio_install_isr_service(0);
+    xTaskCreate(keypad_task, "keypad_task", 2048, NULL, 5, NULL);
+    printf("Keypad initialized. Waiting for key presses...\n");
+    xTaskCreate(read_display_status_task, "update_status_task", 2048, NULL, 4, NULL);
+
+    cooler_enabled = true;
     ESP_LOGI(TAG, "Turning cooler on!");
     enable_cooler();
 
     while (1) {
-        read_display_status();
-        lock_container();
-        vTaskDelay(5000 / portTICK_PERIOD_MS);
+        read_display_status_task();
         unlock_container();
         vTaskDelay(5000 / portTICK_PERIOD_MS);
     }
 }
+
+
+
+
+
+
+
+// // ESP Wifi and server connection
+// #define TEST_MODE true // Set to true to simulate data, false to use actual sensor
+// static const char *TAG = "ESP32_MQTT";
+
+// uint32_t MQTT_CONNECTED = 0;
+// static esp_mqtt_client_handle_t client = NULL;
+// static float setpoint = 10.0; // Default setpoint in Celsius
+
+// static void mqtt_app_start(void);
+// static void wifi_init(void);
+
+// /**
+//  * @brief Handles Wi-Fi and IP events.
+//  * Connects to Wi-Fi when STA starts, reconnects if disconnected, and
+//  * starts the MQTT client once an IP is obtained.
+//  * 
+//  * @param arg        Pointer to arguments for the event handler.
+//  * @param event_base Event base identifier.
+//  * @param event_id   Event ID.
+//  * @param event_data Event data.
+//  */
+// static void wifi_event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
+// {
+//     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
+//         esp_wifi_connect();
+//         ESP_LOGI(TAG, "Trying to connect with Wi-Fi");
+//     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
+//         ESP_LOGI(TAG, "Wi-Fi disconnected, reconnecting...");
+//         esp_wifi_connect();
+//     } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
+//         ESP_LOGI(TAG, "Got IP, starting MQTT client");
+//         mqtt_app_start();
+//     }
+// }
+
+// /**
+//  * @brief Handles various MQTT events.
+//  * Responds to events like connection, disconnection, data reception, and errors.
+//  * Logs messages for each event, subscribes to a topic when connected, and displays
+//  * topic and data information upon receiving a message.
+//  *
+//  * @param handler_args Arguments passed to the handler.
+//  * @param base         Event base identifier.
+//  * @param event_id     Event ID.
+//  * @param event_data   Event data.
+//  */
+
+// static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
+// {
+//     ESP_LOGD(TAG, "Event dispatched from event loop base=%s, event_id=%" PRId32, base, event_id);
+//     esp_mqtt_event_handle_t event = (esp_mqtt_event_handle_t) event_data;
+//     int msg_id;
+
+//     switch ((esp_mqtt_event_id_t) event_id) {
+//         case MQTT_EVENT_CONNECTED:
+//             ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
+//             MQTT_CONNECTED = 1;
+//             msg_id = esp_mqtt_client_subscribe(client, "/Medsafe/setpoint", 0);
+//             ESP_LOGI(TAG, "Subscribed to /Medsafe/setpoint, msg_id=%d", msg_id);
+//             break;
+//         case MQTT_EVENT_DISCONNECTED:
+//             ESP_LOGI(TAG, "MQTT_EVENT_DISCONNECTED");
+//             MQTT_CONNECTED = 0;
+//             break;
+//         case MQTT_EVENT_DATA:
+//             ESP_LOGI(TAG, "MQTT_EVENT_DATA");
+//             if (strncmp(event->topic, "/Medsafe/setpoint", event->topic_len) == 0) {
+//                 char setpoint_str[16] = {0};
+//                 strncpy(setpoint_str, event->data, event->data_len);
+//                 setpoint_str[event->data_len] = '\0'; // Null- terminate the string
+//                 setpoint = atof(setpoint_str);  // Update the setpoint
+//                 ESP_LOGI(TAG, "Updated setpoint: %.2f°C", setpoint);
+//             } else {
+//                 ESP_LOGI(TAG, "Received message on an unexpected topic: %.*s", event->topic_len, event->topic);
+//             }
+//             break;
+//         case MQTT_EVENT_ERROR:
+//             ESP_LOGI(TAG, "MQTT_EVENT_ERROR");
+//             break;
+//         default:
+//             ESP_LOGI(TAG, "Unhandled event id:%" PRId32, event_id);
+//             break;
+//     }
+// }
+
+// /**
+//  * @brief Configures and starts the MQTT client.
+//  * Initializes the MQTT client with server configuration and registers the
+//  * event handlers for MQTT events such as connection, data reception, and errors.
+//  */
+
+// static void mqtt_app_start(void)
+// {
+//     esp_mqtt_client_config_t mqtt_config = {
+//     .broker.address.uri = "mqtt://test.mosquitto.org:1883"
+//     };
+    
+//     client = esp_mqtt_client_init(&mqtt_config);
+// // Register the event handler for specific MQTT events
+//     esp_mqtt_client_register_event(client, MQTT_EVENT_CONNECTED, mqtt_event_handler, client);
+//     esp_mqtt_client_register_event(client, MQTT_EVENT_DISCONNECTED, mqtt_event_handler, client);
+//     esp_mqtt_client_register_event(client, MQTT_EVENT_DATA, mqtt_event_handler, client);
+//     esp_mqtt_client_register_event(client, MQTT_EVENT_ERROR, mqtt_event_handler, client);    esp_mqtt_client_start(client);
+// }
+
+// /**
+//  * Initializes the Wi-Fi connection for the ESP32 in station mode.
+//  * Configures Wi-Fi settings, registers event handlesrs, and starts the Wi-FI
+//  */
+// void wifi_init(void)
+// {
+//     ESP_ERROR_CHECK(esp_netif_init());
+//     ESP_ERROR_CHECK(esp_event_loop_create_default());
+//     esp_netif_create_default_wifi_sta();
+
+//     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+//     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+
+//     ESP_ERROR_CHECK(esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &wifi_event_handler, NULL, NULL));
+//     ESP_ERROR_CHECK(esp_event_handler_instance_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &wifi_event_handler, NULL, NULL));
+
+//     wifi_config_t wifi_config = {};
+//     strcpy((char *) wifi_config.sta.ssid, WIFI_SSID);
+//     strcpy((char *) wifi_config.sta.password, WIFI_PASSWORD);
+
+//     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+//     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
+//     ESP_ERROR_CHECK(esp_wifi_start());
+// }
+
+// /**
+//  * @brief Publishes sensor data periodically when MQTT is connected.
+//  * Checks if MQTT is connected before publishing. Sends dummy sensor data to a specified topic
+//  * every 15 seconds. Logs the result of each publish attempt.
+//  * 
+//  * @param params Parameters for the task (not used in this case).
+//  */
+
+// void Publisher_Task(void *params) {
+//     while (true) {
+//         if (MQTT_CONNECTED) {
+//             float temperature = cooler_Temp;
+//             if (temperature >= 0) {
+//                 char temp_str[32];
+//                 snprintf(temp_str, sizeof(temp_str), "Temperature: %.2f°C", temperature);
+//                 float msg_id = esp_mqtt_client_publish(client, "/Medsafe/temperature", temp_str, 0, 0, 0);
+//                 ESP_LOGI(TAG, "Published temperature: %.2f°C:", temperature);
+//             } else {
+//                 ESP_LOGE(TAG, "Failed to read temperature");
+//             }
+//         } else {
+//             ESP_LOGW(TAG, "MQTT not connected, unable to publish");
+//             vTaskDelay(1000 / portTICK_PERIOD_MS); // Wait before retrying
+//         }
+//         vTaskDelay(15000 / portTICK_PERIOD_MS); // Publish every 15 seconds
+//     }
+// }
+
+// /**
+//  * @brief Main entry point of the application.
+//  * Initializes NVS, Wi-Fi, and starts the publisher task to handle MQTT data publishing.
+//  */
+
+// void app_main(void)
+// {
+//     esp_err_t ret = nvs_flash_init();
+//     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+//         ESP_ERROR_CHECK(nvs_flash_erase());
+//         ret = nvs_flash_init();
+//     }
+//     ESP_ERROR_CHECK(ret);
+//     wifi_init();
+//     xTaskCreate(Publisher_Task, "Publisher_Task", 1024 * 5, NULL, 5, NULL);
+// }
