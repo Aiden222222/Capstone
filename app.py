@@ -1,31 +1,39 @@
 from flask import Flask, request, render_template, redirect, url_for, jsonify
 import paho.mqtt.client as mqtt
 import threading
-import time
-import random
+import json
 
 app = Flask(__name__)
-data_storage = {"temperature": "No data received yet.", # Stores the latest temperature received
-                "setpoint": 10.0  # Initial temperature setpoint
+data_storage = {"temperature": None, # Stores the latest temperature received
+                "container_filled": None,  # Initial temperature setpoint
+                "setpoint": 6.0 #Initial temperature setpoint (default value)
 }  
 
 # MQTT Settings
 BROKER_IP = "test.mosquitto.org" 
 port = 1883
-TOPIC_TEMPERATURE = "/Medsafe/temperature"  #ESP32 sends temperature here
+TOPIC_DATA = "/Medsafe/data"  #ESP32 sends temperature here
 TOPIC_SETPOINT = "/Medsafe/setpoint"    # Server sends setpoint here
 
 # MQTT Callback to handle connection
 def on_connect(client, userdata, flags, rc):
     print("Connected to MQTT broker with result code " + str(rc))
-    client.subscribe(TOPIC_TEMPERATURE)
+    client.subscribe(TOPIC_DATA)
 
 # MQTT Callback to handle received messages
 def on_message(client, userdata, msg):
-    if msg.topic == TOPIC_TEMPERATURE:
-        # Update the temperature in data_storage
-        data_storage["temperature"] = msg.payload.decode()
-        print(f"Received temperature: {data_storage['temperature']}")
+    if msg.topic == TOPIC_DATA:
+        try:
+            # Parse the JSON payload
+            payload = json.loads(msg.payload.decode())
+            data_storage["temperature"] = payload.get("temperature", None)
+            data_storage["container_filled"] = payload.get("container_filled", None)
+            
+            # Print the received data
+            print(f"Received data - Temperature: {data_storage['temperature']}°C, "
+                  f"Container Filled: {data_storage['container_filled']}")
+        except json.JSONDecodeError:
+            print("Failed to decode JSON payload")
 
 # Function to start the MQTT client
 def start_mqtt_client():
@@ -42,6 +50,11 @@ def start_mqtt_client():
 @app.route('/latest-data', methods=['GET'])
 def get_latest_data():
     return jsonify(data_storage)
+
+# Flask endpoint to retrieve the current setpoint
+@app.route('/get-setpoint', methods=['GET'])
+def get_setpoint():
+    return jsonify({"setpoint": data_storage["setpoint"]})
 
 # Flask endpoint to send setpoint to MQTT broker
 @app.route('/send-setpoint', methods=['POST'])
@@ -94,7 +107,6 @@ def display():
 if __name__ == '__main__':
     # Start the MQTT client thread
     start_mqtt_client()
-
     app.run(host='0.0.0.0', port=5000)  # Start Flask app
 
 
