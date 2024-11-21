@@ -9,7 +9,8 @@ import json
 app = Flask(__name__)
 data_storage = {"temperature": None, # Stores the latest temperature received
                 "container_filled": None,  # Initial temperature setpoint
-                "setpoint": 6.0 #Initial temperature setpoint (default value)
+                "setpoint": 6.0, #Initial temperature setpoint (default value)
+                "daily_temperatures": {} # Stores temperatures for each day
 } 
 user_email = None  # Store the email entered during signup
 
@@ -19,11 +20,14 @@ port = 1883
 TOPIC_DATA = "/Medsafe/data"  # ESP32 sends temperature here
 TOPIC_SETPOINT = "/Medsafe/setpoint"  # Server sends setpoint here
 
+# Create global MQTT client
+mqtt_client = mqtt.Client()
 
 # MQTT Callback to handle connection
 def on_connect(client, userdata, flags, rc):
     print("Connected to MQTT broker with result code " + str(rc))
-    client.subscribe(TOPIC_DATA)
+    client.subscribe(TOPIC_DATA)  # Subscribe to the data topic
+    print("MQTT client connected and subscribed.")
 
 
 # MQTT Callback to handle received messages
@@ -44,11 +48,10 @@ def on_message(client, userdata, msg):
 # Function to start the MQTT client
 def start_mqtt_client():
     def run_mqtt():
-        client = mqtt.Client()
-        client.on_connect = on_connect
-        client.on_message = on_message
-        client.connect(BROKER_IP, port, 60)
-        client.loop_forever()
+        mqtt_client.on_connect = on_connect
+        mqtt_client.on_message = on_message
+        mqtt_client.connect(BROKER_IP, port, 60)
+        mqtt_client.loop_forever()
 
     threading.Thread(target=run_mqtt).start()
 
@@ -106,11 +109,11 @@ def send_setpoint():
     data_storage["setpoint"] = new_setpoint
 
     # Publish the new setpoint to the ESP32 via MQTT
-    client = mqtt.Client()
-    client.connect(BROKER_IP, port, 60)
-    client.publish(TOPIC_SETPOINT, str(new_setpoint))
+    mqtt_client.publish(TOPIC_SETPOINT, str(new_setpoint))
+
     print(f"Published new setpoint: {new_setpoint}")
-    client.disconnect()
+
+    mqtt_client.disconnect()
 
     return jsonify({"message": "Setpoint sent to MQTT broker", "new_setpoint": new_setpoint})
 
@@ -176,17 +179,16 @@ def check_temperature():
             if "daily_temperatures" not in data_storage:
                 data_storage["daily_temperatures"] = {}
 
-                # Publish temperature to the ESP32
-                client = mqtt.Client()
-                client.connect(BROKER_IP, port, 60)
-                client.publish(TOPIC_SETPOINT, str(temperature))
-                print(f"Published new setpoint: {temperature}")
-                client.disconnect()
-
-                return jsonify({"message": "Setpoint sent to MQTT broker", "new_setpoint": temperature})
-
             data_storage["daily_temperatures"][day] = temperature
-            return jsonify(success=True, temperature=temperature, day=day)
+
+            # Publish the new setpoint to the ESP32 (check if connected before publishing)
+            if mqtt_client.is_connected():
+                mqtt_client.publish(TOPIC_SETPOINT, str(temperature))
+                print(f"Published new setpoint: {temperature}")
+                return jsonify({"message": "Setpoint sent to MQTT broker", "new_setpoint": temperature})
+            else:
+                print("MQTT client is not connected.")
+                return jsonify(success=False, error="MQTT client not connected."), 500
         else:
             print(f"Day mismatch: Today is {current_day}, not {day}.")
             return jsonify(success=False, error=f"Today is {current_day}, not {day}.")
