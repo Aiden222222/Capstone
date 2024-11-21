@@ -1,6 +1,6 @@
 /* Automatically generated file; DO NOT EDIT */
 /* Espressif IoT Development Framework Linker Script */
-/* Generated from: C:\Users\modip\OneDrive - Northeastern University\Fall 2024\EECE 4791 - Capstone\EECE_Capstone_M3_Final\build\esp-idf\esp_system\ld\sections.ld.in */
+/* Generated from: C:\Users\moses\Capstone-1\build\esp-idf\esp_system\ld\sections.ld.in */
 
 /*
 

@@ -4,6 +4,6 @@
 
 method=source_dir
 command=
-source_dir=C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/v5.3.1/esp-idf/components/bootloader/subproject
+source_dir=C:/Users/moses/esp/v5.3.1/esp-idf/components/bootloader/subproject
 work_dir=
 

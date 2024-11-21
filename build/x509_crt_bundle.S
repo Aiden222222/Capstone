@@ -1,4 +1,4 @@
-/* * Data converted from C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from C:/Users/moses/Capstone-1/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 #if !defined (__APPLE__) && !defined (__linux__)

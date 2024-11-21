@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/v5.3.1/esp-idf/components/bootloader/subproject"
-  "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader"
-  "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix"
-  "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/tmp"
-  "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp"
-  "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src"
-  "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/moses/esp/v5.3.1/esp-idf/components/bootloader/subproject"
+  "C:/Users/moses/Capstone-1/build/bootloader"
+  "C:/Users/moses/Capstone-1/build/bootloader-prefix"
+  "C:/Users/moses/Capstone-1/build/bootloader-prefix/tmp"
+  "C:/Users/moses/Capstone-1/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/moses/Capstone-1/build/bootloader-prefix/src"
+  "C:/Users/moses/Capstone-1/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/Users/moses/Capstone-1/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/Users/moses/Capstone-1/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

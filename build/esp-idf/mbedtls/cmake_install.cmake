@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/v5.3.1/esp-idf/components/mbedtls
+# Install script for directory: C:/Users/moses/esp/v5.3.1/esp-idf/components/mbedtls
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,11 +34,11 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Users/modip/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20240530/xtensa-esp-elf/bin/xtensa-esp32s3-elf-objdump.exe")
+  set(CMAKE_OBJDUMP "C:/Espressif/tools/tools/xtensa-esp-elf/esp-13.2.0_20240530/xtensa-esp-elf/bin/xtensa-esp32s3-elf-objdump.exe")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/modip/OneDrive - Northeastern University/Fall 2024/EECE 4791 - Capstone/EECE_Capstone_M3_Final/build/esp-idf/mbedtls/mbedtls/cmake_install.cmake")
+  include("C:/Users/moses/Capstone-1/build/esp-idf/mbedtls/mbedtls/cmake_install.cmake")
 endif()
 
