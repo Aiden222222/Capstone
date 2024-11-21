@@ -6,5 +6,6 @@ USE Capstone;
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     box_id VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
 );
