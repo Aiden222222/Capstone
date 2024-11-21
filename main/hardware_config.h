@@ -8,7 +8,6 @@
 
 #include <stdio.h>
 
-
 /**
  * Cooler
  */
@@ -23,12 +22,12 @@ int duty_cycle = 50;
 const uint32_t frequency = 200000;
 
 // Function Declarations
-static void configure_cooler(void);
-static void read_cooler_temp(void);
-static void read_cooler_voltage(void);
-static void read_cooler_current(void);
-static void enable_cooler(void);
-static void disable_cooler(void);
+void configure_cooler(void);
+void read_cooler_temp(void);
+void read_cooler_voltage(void);
+void read_cooler_current(void);
+void enable_cooler(void);
+void disable_cooler(void);
 
 /**
  * LEDs
@@ -39,9 +38,9 @@ static void disable_cooler(void);
 #define PCB_Debug_LED       (gpio_num_t)CONFIG_PCB_DEBUG_LED            //Digital Out
 
 // Function Declarations
-static void configure_leds(void);
-static void enable_LED(gpio_num_t led_gpio);
-static void disable_LED(gpio_num_t led_gpio);
+void configure_leds(void);
+void enable_LED(gpio_num_t led_gpio);
+void disable_LED(gpio_num_t led_gpio);
 
 /**
  * Status Sensors
@@ -50,9 +49,9 @@ static void disable_LED(gpio_num_t led_gpio);
 #define Filled_Status       (gpio_num_t)CONFIG_COOLER_PRESSURE_SENSOR   //Digital In
 
 // Function Declarations
-static void configure_sensors(void);
-static void check_lid_closed(void);
-static void check_container_filled(void);
+void configure_sensors(void);
+void check_lid_closed(void);
+void check_container_filled(void);
 
 /**
  * Lock
@@ -60,9 +59,9 @@ static void check_container_filled(void);
 #define Lock_Control        (gpio_num_t)CONFIG_LOCK_CONTROL             //Digital Out
 
 // Function Declarations
-static void configure_lock(void);
-static void lock_container(void);
-static void unlock_container(void);
+void configure_lock(void);
+void lock_container(void);
+void unlock_container(void);
 
 /**
  * Keypad
@@ -82,6 +81,6 @@ const gpio_num_t ROW_PINS[ROWS] = {Key_R1, Key_R2, Key_R3, Key_R4};
 const gpio_num_t COL_PINS[COLS] = {Key_C1, Key_C2, Key_C3};
 
 // Function Declarations
-static void configure_keypad(void);
+void configure_keypad(void);
 
 #endif

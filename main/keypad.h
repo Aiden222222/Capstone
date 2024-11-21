@@ -7,9 +7,18 @@
 #define KEYPAD_H
 
 #include <driver/gpio.h>
+#include "hardware_config.h"
 
-#define KEYPAD_DEBOUNCING 100   ///< time in ms
+#define KEYPAD_DEBOUNCING 200   ///< time in ms
 #define KEYPAD_STACKSIZE  5
+
+// Keypad mapping
+const char KEYPAD_MAP[ROWS][COLS] = {
+    {'1', '2', '3'},
+    {'4', '5', '6'},
+    {'7', '8', '9'},
+    {'*', '0', '#'}
+};
 
 /**
  * @brief Initialize Keypad settings and start it, setup up directions and isr and initialize
@@ -22,5 +31,10 @@
  */
 esp_err_t keypad_initalize(gpio_num_t keypad_pins[7]);
 
+/**
+ * @brief Handle keypad click
+ * @param [in]args row number
+ */
+void intr_click_handler(void *args);
 
 #endif
