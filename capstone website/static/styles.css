@@ -146,11 +146,11 @@ button:hover {
 }
 
 .schedule label {
-    font-size: 1.3rem; /* Triple the font size */
+    font-size: 1.18rem; /* Triple the font size */
 }
 
 .schedule input {
-    font-size: 1.3rem; /* Triple the font size for inputs */
+    font-size: 1.18rem; /* Triple the font size for inputs */
 }
 
 .schedule td {
@@ -158,14 +158,34 @@ button:hover {
 }
 
 .schedule table {
-    font-size: 1.3rem;
+    font-size: 1.18rem;
     width: 100%;
     border-collapse: collapse;
 }
 
 .schedule th, .schedule td {
-    font-size: 1.3rem;
+    font-size: 1.18rem;
     text-align: left;
-    padding: 15px;
+    padding: 10px;
     border: 1px solid #ddd;
+}
+
+.schedule button {
+    position: relative;
+    top: -1px; /* Move the button up by 10px */
+    right: -10px;
+    width: 40px; /* Adjust the width of the arrow buttons */
+    height: 40px; /* Adjust the height of the arrow buttons */
+    font-size: 1rem; /* Adjust the font size for icons or text inside */
+    padding: 5px; /* Add padding for better clickability */
+    background-color: #007bff; /* Maintain the button color */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Optional: Make the buttons circular */
+    cursor: pointer;
+}
+
+.schedule button:hover {
+    background-color: #0056b3; /* Change color on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover for better UX */
 }

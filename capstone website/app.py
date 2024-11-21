@@ -144,6 +144,7 @@ def send_setpoint():
 def index():
     return render_template('index.html')
 
+
 # Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -168,9 +169,11 @@ def login():
         return redirect(url_for('display', box_id=box_id))
     return render_template('login.html')
 
+
 # Signup route
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    global user_email  # Access global email variable
     if request.method == 'POST':
         box_id = request.form['boxId']
         password = request.form['password']
@@ -183,6 +186,7 @@ def signup():
         cur.close()
         return redirect(url_for('display', box_id=box_id))
     return render_template('signup.html')
+
 
 # Display route
 @app.route('/display')
@@ -237,6 +241,8 @@ def check_temperature():
         return jsonify(success=False, error=f"An unexpected error occurred: {e}"), 500
 
 if __name__ == '__main__':
+    # Start the MQTT client thread
+    start_mqtt_client()
     # Start the MQTT client thread
     start_mqtt_client()
 
