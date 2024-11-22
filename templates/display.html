@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Temperature Schedule</title>
+    <script>
+        // Function to handle AJAX submission
+        function submitForm(event, form) {
+            event.preventDefault(); // Prevent default form submission
+            const formData = new FormData(form);
+
+            fetch('/check-temperature', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log(`Temperature for ${data.day} set to ${data.temperature}°C`);
+                } else {
+                    console.error(`Submission error: ${data.error}`);
+                }
+            })
+            .catch(error => {
+                console.error('Unexpected submission error:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="schedule">
+        <table>
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Details</th>
+                    <th>Day</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop for each day -->
+                {% for day1, day2 in [('Sunday', 'Monday'), ('Tuesday', 'Wednesday'), ('Thursday', 'Friday'), ('Saturday', None)] %}
+                <tr>
+                    <td>{{ day1 }}</td>
+                    <td>
+                        <form onsubmit="submitForm(event, this)">
+                            <label>Earliest Delivery Time:</label><br>
+                            <input type="time" name="earliest_time"><br>
+                            <label>Latest Delivery Time:</label><br>
+                            <input type="time" name="latest_time"><br>
+                            <label>Temperature:</label><br>
+                            <input type="number" name="temperature" step="0.1" required> °C
+                            <input type="hidden" name="day" value="{{ day1 }}">
+                            <button type="submit" title="Submit Temperature">→</button>
+                        </form>
+                    </td>
+                    {% if day2 %}
+                    <td>{{ day2 }}</td>
+                    <td>
+                        <form onsubmit="submitForm(event, this)">
+                            <label>Earliest Delivery Time:</label><br>
+                            <input type="time" name="earliest_time"><br>
+                            <label>Latest Delivery Time:</label><br>
+                            <input type="time" name="latest_time"><br>
+                            <label>Temperature:</label><br>
+                            <input type="number" name="temperature" step="0.1" required> °C
+                            <input type="hidden" name="day" value="{{ day2 }}">
+                            <button type="submit" title="Submit Temperature">→</button>
+                        </form>
+                    </td>
+                    {% else %}
+                    <td colspan="2">
+                        <p>Status: 
+                            {% if package_status == 'in_box' %}
+                                Package is in Box
+                            {% else %}
+                                No Package in Box
+                            {% endif %}
+                        </p>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+
+
