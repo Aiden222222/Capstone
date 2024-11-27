@@ -163,6 +163,19 @@ menu "Capstone Configuration"
         help
             Input GPIO number (IOxx) for ADC clock.
 
+# WiFi Access Point
+config ESP_AP_SSID
+    string "WiFi AP SSID"
+    default "MedSafe_AP"
+    help
+        AP SSID (network name) for the example to connect to.
+        
+config ESP_MAXIMUM_RETRY
+    int "Maximum retry"
+    default 5
+    help
+        Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.
+
 # Other
 
 endmenu

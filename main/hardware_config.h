@@ -32,9 +32,9 @@ void disable_cooler(void);
 /**
  * LEDs
  */
-#define Power_LED           (gpio_num_t)CONFIG_POWER_LED                //Digital Out
-#define Locked_Status_LED   (gpio_num_t)CONFIG_LOCK_STATUS_LED          //Digital Out
-#define Cooling_Status_LED  (gpio_num_t)CONFIG_COOLING_STATUS_LED       //Digital Out
+#define Power_LED           (gpio_num_t)CONFIG_POWER_LED                //Digital Out - Green
+#define Locked_Status_LED   (gpio_num_t)CONFIG_LOCK_STATUS_LED          //Digital Out - Red
+#define Cooling_Status_LED  (gpio_num_t)CONFIG_COOLING_STATUS_LED       //Digital Out - Blue
 #define PCB_Debug_LED       (gpio_num_t)CONFIG_PCB_DEBUG_LED            //Digital Out
 
 // Function Declarations
