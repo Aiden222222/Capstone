@@ -27,6 +27,28 @@
                 console.error('Unexpected submission error:', error);
             });
         }
+
+        // Function to poll the server for the container status
+        function pollContainerStatus() {
+            fetch('/latest-data')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.container_filled) {
+                        document.getElementById('package-status').innerText = 'Package is in Box';
+                    } else {
+                        document.getElementById('package-status').innerText = 'No Package in Box';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching container status:', error);
+                });
+        }
+
+        // Start polling every 5 seconds
+        setInterval(pollContainerStatus, 5000);
+
+        // Poll immediately on page load
+        window.onload = pollContainerStatus;
     </script>
 </head>
 <body>
@@ -74,11 +96,13 @@
                     {% else %}
                     <td colspan="2">
                         <p>Status: 
-                            {% if package_status == 'in_box' %}
-                                Package is in Box
-                            {% else %}
-                                No Package in Box
-                            {% endif %}
+                            <span id="package-status">
+                                {% if package_status == 'in_box' %}
+                                    Package is in Box
+                                {% else %}
+                                    No Package in Box
+                                {% endif %}
+                            </span>
                         </p>
                     </td>
                     {% endif %}
