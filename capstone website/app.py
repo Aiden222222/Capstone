@@ -1,32 +1,21 @@
 from flask import Flask, request, render_template, redirect, url_for, jsonify
-from flask_mysqldb import MySQL
+import smtplib
+from email.mime.text import MIMEText
 import paho.mqtt.client as mqtt
 import threading
 from datetime import datetime
-import mysql.connector
-import bcrypt
-import os
-import random
 import json
-import smtplib
-from email.mime.text import MIMEText
 
 app = Flask(__name__)
-data_storage = {"temperature": None, # Stores the latest temperature received
-                "container_filled": None,  # Initial temperature setpoint
-                "setpoint": 6.0, #Initial temperature setpoint (default value)
-                "daily_temperatures": {} # Stores temperatures for each day
+data_storage = {
+    "temperature": None,
+    "container_filled": None,
+    "setpoint": 6.0,
+    "daily_temperatures": {},
+    "email_sent": False  # New flag to track email status
 }
-user_email = None  # Store the email entered during signup
 
-def get_user_email(box_id):
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT email FROM users WHERE box_id = %s", (box_id,))
-    result = cur.fetchone()
-    cur.close()
-    if result:
-        return result[0]  # Return the email
-    return None
+user_email = None  # Store the email entered during signup
 
 # MQTT Settings
 BROKER_IP = "test.mosquitto.org"
@@ -37,20 +26,12 @@ TOPIC_SETPOINT = "/Medsafe/setpoint"  # Server sends setpoint here
 # Create global MQTT client
 mqtt_client = mqtt.Client()
 
-# Configure MySQL from environment variables
-app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST', 'mysql')
-app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER', 'root')
-app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD', 'root')
-app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB', 'Capstone')
-
-# Initialize MySQL
-mysql = MySQL(app)
-
 # MQTT Callback to handle connection
 def on_connect(client, userdata, flags, rc):
     print("Connected to MQTT broker with result code " + str(rc))
     client.subscribe(TOPIC_DATA)  # Subscribe to the data topic
     print("MQTT client connected and subscribed.")
+
 
 # MQTT Callback to handle received messages
 def on_message(client, userdata, msg):
@@ -66,6 +47,7 @@ def on_message(client, userdata, msg):
         except json.JSONDecodeError:
             print("Failed to decode JSON payload")
 
+
 # Function to start the MQTT client
 def start_mqtt_client():
     def run_mqtt():
@@ -76,11 +58,12 @@ def start_mqtt_client():
 
     threading.Thread(target=run_mqtt).start()
 
+
 # Function to send an email
 def send_email(body, recipient):
     try:
         sender_email = "capstone093@gmail.com"  # Updated sender email
-        sender_password = "Medsafe2024"  # Updated sender password
+        sender_password = "gjuk heus xehi kfcx"  # Updated sender password
         smtp_server = "smtp.gmail.com"
         smtp_port = 587
 
@@ -106,21 +89,24 @@ def send_email(body, recipient):
 # Flask endpoint to retrieve the latest message
 @app.route('/latest-data', methods=['GET'])
 def get_latest_data():
-    box_id = request.form.get('box_id')
-    user_email = get_user_email(box_id)
-    if jsonify(data_storage):
-        if user_email:  # Check if email is set
-            send_email(
-                body="A package is in the box.",  # Body of the email
-                recipient=user_email  # Recipient's email
-            )
+    # Check if container_filled is True and email is not already sent
+    if data_storage["container_filled"] and not data_storage["email_sent"] and user_email:
+        send_email(
+            body="A package is in the box.",
+            recipient=user_email
+        )
+        data_storage["email_sent"] = True  # Mark email as sent
+    elif not data_storage["container_filled"]:  # Reset flag if the container is emptied
+        data_storage["email_sent"] = False
     return jsonify(data_storage)
+
 
 # Flask endpoint to retrieve the current setpoint
 @app.route('/get-setpoint', methods=['GET'])
 def get_setpoint():
     return jsonify({"setpoint": data_storage["setpoint"]})
 
+# Flask endpoint to send setpoint to MQTT broker
 # Flask endpoint to send setpoint to MQTT broker
 @app.route('/send-setpoint', methods=['POST'])
 def send_setpoint():
@@ -151,21 +137,6 @@ def login():
     if request.method == 'POST':
         box_id = request.form['boxId']
         password = request.form['password']
-        # Query the database to validate user credentials
-        cur = mysql.connection.cursor()
-        query = "SELECT password FROM users WHERE box_id = %s"
-        cur.execute(query, (box_id,))
-        result = cur.fetchone()  # Fetch one row
-        stored_password = result[0]
-        if bcrypt.checkpw(password.encode('utf-8'), stored_password.encode('utf-8')):
-            # Successful login, redirect to display page
-            cur.close()
-            return redirect(url_for('display', box_id=box_id))
-        else:
-            # Invalid password
-            cur.close()
-            return "Invalid credentials", 401
-        result = cur.fetchone()  # Fetch one row
         return redirect(url_for('display', box_id=box_id))
     return render_template('login.html')
 
@@ -177,13 +148,7 @@ def signup():
     if request.method == 'POST':
         box_id = request.form['boxId']
         password = request.form['password']
-        user_email = request.form['Email']  # Capture email from form
-
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-        cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO users (box_id, password, email) VALUES (%s, %s, %s)", (box_id, hashed_password, user_email))
-        mysql.connection.commit()
-        cur.close()
+        user_email = request.form['email']  # Capture email from form
         return redirect(url_for('display', box_id=box_id))
     return render_template('signup.html')
 
@@ -193,6 +158,7 @@ def signup():
 def display():
     box_id = request.args.get('box_id')
     return render_template('display.html', box_id=box_id)
+
 
 @app.route('/check-temperature', methods=['POST'])
 def check_temperature():
@@ -240,9 +206,8 @@ def check_temperature():
         print(f"Unexpected error: {e}")
         return jsonify(success=False, error=f"An unexpected error occurred: {e}"), 500
 
+
 if __name__ == '__main__':
-    # Start the MQTT client thread
-    start_mqtt_client()
     # Start the MQTT client thread
     start_mqtt_client()
 
